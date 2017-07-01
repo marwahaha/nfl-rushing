@@ -50,4 +50,55 @@ We will evaluate you on your ability to solve the problem defined in the require
 If you have any questions regarding requirements, do not hesitate to email your contact at theScore for clarification.
 
 ### Installation and running this solution
-... TODO
+This application uses a React SPA frontend, with a node-express backend and a postgres database.
+
+####Installation Requirements:
+
+node v8+ & npm
+
+PostgreSQL (alternatively, docker + docker-compose)
+
+#### Setup:
+##### Start + Init PostgreSQL
+Spin up your PostgreSQL database, or `cd` into the project root directory and run
+```bash
+docker-compose up -d postgres
+```
+
+Once this is running, `cd` into the `server` directory. If you are not using docker please set the environment variable defining the connection. Make sure the database is named `nfl`
+```bash
+DATABASE_URL=postgres://postgres@localhost:5432/nfl
+```
+
+Initialize the schema by running the `initSchema.sql` script
+```bash
+psql -U postgres -h localhost -f ./initSchema.sql
+```
+
+##### Download dependencies and build frontend
+Frontend is built as part of the npm prepare script so a simple
+```bash
+npm install
+```
+should set up everything we need for the server to run!
+
+##### Bootstrap database with rushing.json
+Right now our app is empty! Time to load some data, run this handy script:
+```bash
+npm run db:bootstrap
+```
+You should see a message stating the process was successful.
+
+##### Launch your server and navigate to it!
+```bash
+npm start
+```
+You should be able to navigate to `localhost:4000` in your browser now and play with the application!
+
+#### Developing on the Frontend
+If you would like to run the frontend in debug mode, first launch the server following the above instructions. Then `cd` into the `client` directory and run
+```bash
+npm start
+```
+
+Now you should have the frontend application running on `localhost:3000` with services being proxied to ```localhost:4000```. This includes hot-reloading and sourcemaping to make your life easier!

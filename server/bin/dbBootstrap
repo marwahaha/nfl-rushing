@@ -1,0 +1,59 @@
+#!/usr/bin/env node
+
+const { rushing, end } = require('../models')
+const rawRushingData = require('../../rushing.json')
+
+function deconstructLongestRushing(raw) {
+  const rawString = raw.toString()
+
+  // Longest rush ended in touchdown
+  if (rawString.includes('T')) {
+    return {
+      longest: parseInt(rawString.slice(0, -1), 10),
+      touchdown: true
+    }
+  }
+
+  // No touchdown
+  return {
+    longest: raw,
+    touchdown: false
+  }
+}
+
+function cleanYds(rawYds) {
+  return parseInt(rawYds.toString().replace(',', ''), 10)
+}
+
+rawRushingData.forEach(async playerStats => {
+  try {
+    const {longest, touchdown} = deconstructLongestRushing(playerStats.Lng)
+
+    const yds = cleanYds(playerStats.Yds)
+
+    await rushing.create(
+      playerStats.Player,
+      playerStats.Team,
+      playerStats.Pos,
+      playerStats['Att/G'],
+      playerStats.Att,
+      yds,
+      playerStats.Avg,
+      playerStats['Yds/G'],
+      playerStats.TD,
+      longest,
+      touchdown,
+      playerStats['1st'],
+      playerStats['1st%'],
+      playerStats['20+'],
+      playerStats['40+'],
+      playerStats.FUM
+    )
+
+  } catch (e) {
+    console.error(e)
+  }
+})
+
+console.log('Bootstrap Successful!')
+end()

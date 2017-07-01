@@ -1,0 +1,31 @@
+{
+  "name": "server",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www",
+    "db:bootstrap": "node ./bin/dbBootstrap",
+    "clean": "rm -rf ./static/*",
+    "prepare": "npm run clean && cd ../client && npm install && npm run build && cp -rf ./build/static ../server && cp ./build/index.html ../server/views/",
+    "lint": "standard --global it --global describe",
+    "lint:fix": "standard --global it --global describe --fix",
+    "test": "mocha -R spec ./tests/*.spec.js"
+  },
+  "dependencies": {
+    "assert": "^1.4.1",
+    "body-parser": "~1.17.1",
+    "cookie-parser": "~1.4.3",
+    "csv-express": "^1.2.1",
+    "debug": "~2.6.3",
+    "express": "~4.15.2",
+    "express-joi-validation": "^0.1.0",
+    "jade": "~1.11.0",
+    "joi": "^10.6.0",
+    "mocha": "^3.4.2",
+    "morgan": "~1.8.1",
+    "pg-promise": "^6.2.1",
+    "serve-favicon": "~2.4.2",
+    "standard": "^10.0.2",
+    "supertest": "^3.0.0"
+  }
+}

@@ -1,0 +1,18 @@
+.Search {
+  text-align: start;
+  padding: 0 0 0 20px;
+}
+
+.Search-icon {
+  vertical-align: middle;
+}
+
+.Search-loading {
+  animation: spin 1s infinite;
+  transition: transform 1s ease-in;
+}
+
+@keyframes spin {
+  0% { transform: rotate(360deg); }
+  100% { transform: rotate(0deg); }
+}

@@ -1,0 +1,26 @@
+{
+  "name": "client",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "axios": "^0.16.2",
+    "material-ui": "^0.18.5",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1",
+    "react-redux": "5.0.3",
+    "react-scripts": "1.0.8",
+    "react-tap-event-plugin": "^2.0.1",
+    "redux": "^3.7.1",
+    "redux-saga": "^0.15.4",
+    "standard": "^10.0.2"
+  },
+  "proxy": "http://localhost:4000",
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject",
+    "lint": "standard --global it --global describe",
+    "lint:fix": "standard --global it --global describe --fix"
+  }
+}
