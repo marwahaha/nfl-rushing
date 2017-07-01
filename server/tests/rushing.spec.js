@@ -152,6 +152,18 @@ describe('rushing stats', () => {
       .catch(done)
   })
 
+  it('should export csv when given new Accept header', (done) => {
+    request(server)
+      .get('/api/v1/rushing?name=darren')
+      .set('Accept', 'text/csv')
+      .expect(200)
+      .then(response => {
+        assert(response.res.text.includes(',1st%,'))
+      })
+      .then(done)
+      .catch(done)
+  })
+
   it('should throw a validation error if query is malformed', (done) => {
     request(server)
       .get('/api/v1/rushing?rushingYardsTotal=decending')
