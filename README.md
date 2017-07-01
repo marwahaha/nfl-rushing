@@ -52,7 +52,7 @@ If you have any questions regarding requirements, do not hesitate to email your 
 ### Installation and running this solution
 This application uses a React SPA frontend, with a node-express backend and a postgres database.
 
-####Installation Requirements:
+#### Installation Requirements:
 
 node v8+ & npm
 
